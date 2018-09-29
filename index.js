@@ -171,6 +171,9 @@ function handleEditItemClicked() {
 }
 
 function addUserInput(itemIndex, value){
+  if(value === ''){
+    return;
+  }
   STORE.items[itemIndex].name = value;
   if(STORE.items[itemIndex].checked === true){
     STORE.items[itemIndex].checked = false;
@@ -180,6 +183,7 @@ function addUserInput(itemIndex, value){
 function handleUserInput() {
   $('.input-box').keyup(function (event){
     if(event.which == 13){
+      console.log("hello world");
       const itemIndex = getItemIndexFromElement(event.currentTarget);
       addUserInput(itemIndex, event.currentTarget.value);
       renderShoppingList();
