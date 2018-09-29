@@ -54,6 +54,7 @@ function renderShoppingList() {
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
+  handleUserInput();
 }
 
 
@@ -62,6 +63,7 @@ function renderSearchList() {
     
   const searchListItemsString = generateShoppingItemsString(Items);
   $('.js-shopping-list').html(searchListItemsString);
+  handleUserInput();
 }
     
 
@@ -168,12 +170,21 @@ function handleEditItemClicked() {
   });
 }
 
+function addUserInput(itemIndex, value){
+  STORE.items[itemIndex].name = value;
+  if(STORE.items[itemIndex].checked === true){
+    STORE.items[itemIndex].checked = false;
+  }
+}
+
 function handleUserInput() {
   $('.input-box').keyup(function (event){
     if(event.which == 13){
-      console.log('enter key pressed');
+      const itemIndex = getItemIndexFromElement(event.currentTarget);
+      addUserInput(itemIndex, event.currentTarget.value);
+      renderShoppingList();
     }
-  })
+  });
 }
 
 
