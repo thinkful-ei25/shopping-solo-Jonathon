@@ -95,7 +95,7 @@ function checkItemToSearchList(itemName){
 }
 
 function removeFromSearchList(){
-  STORE.search.pop();
+  STORE.search = [];
 }
 
 function handleItemSearch(){
@@ -182,7 +182,7 @@ function addUserInput(itemIndex, value){
 
 function handleUserInput() {
   $('.input-box').keyup(function (event){
-    if(event.which == 13){
+    if(event.which === 13){
       console.log("hello world");
       const itemIndex = getItemIndexFromElement(event.currentTarget);
       addUserInput(itemIndex, event.currentTarget.value);
